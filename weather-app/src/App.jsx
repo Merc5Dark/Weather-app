@@ -42,8 +42,11 @@ function App() {
 	const [desc5, setDesc5] = useState('')	
 
 	// URLs for fetching weather data and forecast
-	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=c970c2c94ce306494f2c5f041ec27673`
-	const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=c970c2c94ce306494f2c5f041ec27673`
+	const newApiKey = 'eb3e2b69d5805533c2d2c13bd96544f4';
+
+	// URLs for fetching weather data and forecast
+	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${newApiKey}`
+	const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${newApiKey}`
 
 	// Function to search for location on Enter key press
 	const searchLocation = (event) => {

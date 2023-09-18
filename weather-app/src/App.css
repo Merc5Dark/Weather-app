@@ -1,42 +1,117 @@
-#root {
-  max-width: 1280px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container styles */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  color: #fff;
+  font-weight: 200;
+}
+
+/* Search bar styles */
+.search-btn {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.497);
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: rgba(0, 0, 0, 0.497);
+  border-radius: 5px;
+  color: #fff;
+  width: 70%;
+  max-width: 300px;
   margin: 0 auto;
-  padding: 2rem;
+  margin-bottom: 3vh;
+  text-align: center; 
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  input {
+    width: 90%;
+  }
+  
+  
+  input {
+    margin-left: 0;
+  }
+}
+
+/* City stats styles */
+.city-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 13px;
+  background-color: rgba(0, 0, 0, 0.497);
+  width: 400px;
+  margin-left: 370px;
+}
+/* Media query for smaller screens for city-stats */
+@media screen and (max-width: 768px) {
+  .city-stats {
+    width: 90%; 
+    margin-left: 0; 
+  }
+}
+
+
+/* 3 Hour Interval styles */
+.daily-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.497);
+  width: 680px;
+  border-radius: 13px;
+  justify-content: center;
+  margin-left: 250px;
+  margin-bottom: 32px;
+  margin-top: 45px;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 3px;
+  text-align: left; 
+}
+
+.summary-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.summary {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .daily-summary {
+    width: 90%; 
+    margin-left: 0; 
   }
-  to {
-    transform: rotate(360deg);
+
+  .title {
+    text-align: center; 
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .summary-container {
+    flex-direction: column;
+    align-items: center;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

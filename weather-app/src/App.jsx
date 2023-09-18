@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import coldBg from './assets/cold.png'
+import hotBg from './assets/hot.jpg'
 
 function App() {
 	// State variables for storing weather data
@@ -14,6 +16,7 @@ function App() {
 	const [windspeed, setWindSpeed] = useState(0)
 	const [humidity, setHumidity] = useState(0)
 	const [weather, setWeather] = useState('')
+	const [bg, setBg] = useState (coldBg)
 
 	// State variables for 5-day forecast data
 	const [time1, setTime1] = useState('')
@@ -47,6 +50,8 @@ function App() {
 	// URLs for fetching weather data and forecast
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${newApiKey}`
 	const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${newApiKey}`
+
+	
 
 	// Function to search for location on Enter key press
 	const searchLocation = (event) => {
@@ -140,18 +145,37 @@ function App() {
 			setIcon5('http://openweathermap.org/img/wn/'+response.data.list[5].weather[0].icon +'@2x.png')
 			setTemp5(response.data.list[5].main.temp.toFixed())
 			setDesc5(response.data.list[5].weather[0].main)
+       
+			
+
+			
+
+			
 		})
 		setLocation('')
 	}
+   
 
 	// useEffect to show an alert on page load
 	useEffect(() => {
 		window.onload = () => {
-			alert('Enter a location in the search bar to show data')
+		  alert('Enter a location in the search bar to show data');
+		};
+	  
+		const threshold = 20; // Temperature threshold in Celsius
+	  
+		// Check the temperature and set the background accordingly
+		if (parseFloat(temp) > threshold) {
+		  setBg(hotBg);
+		} else {
+		  setBg(coldBg);
 		}
-	})
+	
+}); 
+	  
 
 	return (
+		<div style = {{backgroundImage: `url(${bg})`}}>
 		<div className="container">
 			{/* Search bar */}
 			<div className="search-bar">	
@@ -162,13 +186,15 @@ function App() {
 					onKeyPress={searchLocation}
 					placeholder="Enter location"
 				/>
-				<button onClick={searchLocationBtn}>
+				<button className="search-btn" onClick={searchLocationBtn}>
 					<FontAwesomeIcon icon={faMagnifyingGlass}/>
 				</button>											
 			</div>
 			{/* City statistics */}
 			<div className="city-stats">
+				<div className="City">
 				<h1>{data.city ? data.city.name : null}</h1>
+				</div>
 				<div className="icon-temp">
 					{/* <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon" /> */}
 					{/* <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="image" /> */}
@@ -259,6 +285,7 @@ function App() {
 				</div>
 			</div>
 
+		</div>
 		</div>
 	);
 }
